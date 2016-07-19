@@ -1,12 +1,17 @@
-<ion-header>
-  <ion-navbar dark style="height:60px">
-    <ion-title style="white-space:normal">Tirar Times</ion-title>
+<!--<ion-header>
+  <ion-navbar text-center dark style="height:120px">
+	  <img src="/images/logo2.png" style="height:100px">
   </ion-navbar>
-</ion-header>
+</ion-header>-->
 
 <ion-content padding class="home">
 
     <span *ngIf="jogadores == undefined">
+		<ion-card  text-center>
+			<ion-item style="background-color:black">
+				<img src="/images/logo2.png">
+			</ion-item>
+		</ion-card>
 		<ion-list>
 			<ion-item>
 				<ion-label>Quantos times?</ion-label>
