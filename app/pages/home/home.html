@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar dark style="height:60px">
+    <ion-title style="white-space:normal">Tirar Times</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="home">
+
+    <span *ngIf="jogadores == undefined">
+		<ion-list>
+			<ion-item>
+				<ion-label>Quantos times?</ion-label>
+				<ion-select [(ngModel)]="quantidadeTimes">
+					<ion-option [value]="number" *ngFor="let number of getTeamQuantityOptions(8)">{{number}}</ion-option>
+				</ion-select>
+			</ion-item>
+		
+			<ion-item>
+				<ion-label floating>Lista de jogadores</ion-label>
+				<ion-textarea rows="8" [(ngModel)]="textoarea" ></ion-textarea>
+				
+			</ion-item>
+			<p>OBS: Coloque um nome por linha.</p>
+		</ion-list>
+
+		<div text-center>
+			<button secondary round (click)="transformarTextoEmLista(textoarea)">
+				Tirar Times
+				<ion-icon name="ios-people"></ion-icon>
+			</button>
+			
+		</div>
+
+    </span>
+
+	<div *ngIf="showTeams !== false">
+		<div text-center>
+			<button class="button" light (click)="apagarLista()">
+				 <ion-icon name="arrow-round-back"></ion-icon>
+				 Voltar
+			</button>
+			<!--<button (click)="salvarTimesDeHoje()">
+				Salvar
+			</button>-->
+		</div>
+
+		<lista-de-times [listaDeTimes]="listaDeTimes"></lista-de-times>
+
+	</div>
+
+</ion-content>

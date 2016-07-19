@@ -1,0 +1,17 @@
+<ion-card *ngFor="let time of listaDeTimes;let i = index">
+
+    <ion-item>
+        {{time.nome}}
+        <ion-badge item-right>
+            {{time.jogadores.length}} 
+            <span *ngIf="time.jogadores.length > 1">Jogadores</span>
+            <span *ngIf="time.jogadores.length < 2">Jogador</span>
+        </ion-badge>
+    </ion-item>
+
+    <ion-item-divider *ngFor="let jogador of time.jogadores" 
+        [style.background-color]="getRGBTeamColor(time)"
+        [style.color]="getFontBasedOnTeamColor(time)">
+        {{jogador}}
+    </ion-item-divider>
+</ion-card>
