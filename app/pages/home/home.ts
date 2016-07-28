@@ -36,17 +36,27 @@ export class HomePage {
 		if (texto.length !== 0) {
 			this.listaDeTimes = []
 			this.jogadores = this.jogadorService.gerarListaAPartirDeTexto(texto)
-			this.listaDeTimes = self.jogadorService.shuffle(self.jogadores, self.quantidadeTimes)
-			let loading = Loading.create({
-				content: "Sorteando..."
-			})
-			this.navController.present(loading)
-			setTimeout(function() {
-				loading.dismiss()
-				self.setColorsForTeams()
-				self.setRandomColorForTeams()
-				self.showTeams = true
-			}, 1000)
+			if (this.jogadores.length > 1) {
+				this.listaDeTimes = self.jogadorService.shuffle(self.jogadores, self.quantidadeTimes)
+				let loading = Loading.create({
+					content: "Sorteando..."
+				})
+				this.navController.present(loading)
+				setTimeout(function() {
+					loading.dismiss()
+					self.setColorsForTeams()
+					self.setRandomColorForTeams()
+					self.showTeams = true
+				}, 1000)
+			} else {
+				let alert = Alert.create({
+					title: '',
+					subTitle: 'Coloque ao menos dois nomes para que os times possam ser gerados.',
+					buttons: ['OK']
+				})
+				this.navController.present(alert)
+				this.jogadores = undefined
+			}
 		} else {
 			let alert = Alert.create({
 				title: '',
